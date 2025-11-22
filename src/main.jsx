@@ -14,6 +14,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ErrorPage from "./utils/ErrorPage.jsx";
 import AppInitializer from "./layouts/AppInitializer.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import GuestRoute from "./components/GuestRoute.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -43,16 +45,26 @@ const router = createBrowserRouter([
             Component: SinglePost,
           },
           {
-            path: "/write",
-            Component: Write,
+            element: <ProtectedRoute />,
+            children: [
+              {
+                path: "/write",
+                Component: Write,
+              },
+            ],
           },
           {
-            path: "/login",
-            Component: Login,
-          },
-          {
-            path: "/register",
-            Component: Register,
+            element: <GuestRoute />,
+            children: [
+              {
+                path: "/login",
+                Component: Login,
+              },
+              {
+                path: "/register",
+                Component: Register,
+              },
+            ],
           },
         ],
       },

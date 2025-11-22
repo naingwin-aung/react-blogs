@@ -58,9 +58,6 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center h-[calc(100vh-80px)] bg-gray-100">
-      {" "}
-      {/* height minus navbar height */}
-      {/* Login Page */}
       <div className="w-md p-8 rounded-2xl bg-white">
         <div className="mb-5 text-2xl font-semibold">Log in</div>
         <div className="text-sm">
@@ -109,7 +106,7 @@ const Login = () => {
 
         <button 
           onClick={signInWithGoogle}
-          className="w-full flex items-center justify-center p-3 mb-6 border border-gray-300 rounded-md bg-white text-gray-700 font-medium hover:bg-gray-50 transition-colors mt-4"
+          className="w-full flex items-center justify-center p-3 mb-6 border border-gray-300 rounded-md bg-white text-gray-700 font-medium hover:bg-gray-50 transition-colors mt-4 cursor-pointer"
         >
           Sign in with Google
         </button>
