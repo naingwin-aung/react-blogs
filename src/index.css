@@ -2,11 +2,15 @@
 
 @import "tailwindcss";
 
+* {
+    font-family: "Poppins", sans-serif;
+}
+
 body {
     background-color: #ffffff;
     width: 100vw;
     overflow-x: hidden;
-    font-family: "Poppins", "Montserrat", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .scrollbar-hide {
