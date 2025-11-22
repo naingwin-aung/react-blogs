@@ -27,7 +27,7 @@ const Write = () => {
 
   return (
     <Container>
-      <div className="mt-5 flex flex-col gap-6">
+      <div className="mt-5 flex flex-col gap-6 mb-5">
         <h1 className="text-xl font-light">Create a New Post</h1>
         <form
           onSubmit={handleSubmit}

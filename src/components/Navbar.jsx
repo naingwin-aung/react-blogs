@@ -27,7 +27,8 @@ const Navbar = () => {
 
   const logoutSubmit = () => {
     logout();
-  }
+    setOpen(false);
+  };
 
   return (
     <div className="w-full h-14 md:h-18 flex items-center justify-between">
@@ -57,39 +58,53 @@ const Navbar = () => {
           <Link to="/">Trending</Link>
           <Link to="/">Most Popular</Link>
           <Link to="/">About</Link>
-          <Link to="/">
-            <button className="flex gap-1 items-center px-4 py-2 rounded-[2rem] bg-blue-600/70 text-white cursor-pointer text-sm">
-              Log in
+          {isAuthenticated ? (
+            <span className="cursor-pointer text-blue-600">
+              Welcome, {user.name}
+            </span>
+          ) : (
+            <Link to="/login">
+              <button className="flex gap-1 items-center px-4 py-2 rounded-[2rem] bg-gradient-to-r from-blue-400 to-blue-600 text-white cursor-pointer text-sm">
+                Log in
+              </button>
+            </Link>
+          )}
+          {isAuthenticated && user && (
+            <button
+              onClick={logoutSubmit}
+              className="flex gap-1 items-center px-4 py-2 rounded-[2rem] bg-gradient-to-r from-red-400 to-red-600 text-white cursor-pointer text-sm"
+            >
+              Logout
             </button>
-          </Link>
+          )}
         </div>
       </div>
 
       {/* Desktop menu */}
-      <div className="hidden md:flex items-center gap-8 xl:gap-12 font-medium text-sm">
+      <div className="hidden md:flex items-center gap-2 lg:gap-4 xl:gap-8 font-medium text-sm">
         <Link to="/">Home</Link>
         <Link to="/">Trending</Link>
         <Link to="/">Most Popular</Link>
         <Link to="/">About</Link>
-        {
-          isAuthenticated ? (
-           <span className="cursor-pointer text-blue-600">
+        {isAuthenticated ? (
+          <span className="cursor-pointer text-blue-600">
             Welcome, {user.name}
-           </span>
-          ) :
+          </span>
+        ) : (
           <Link to="/login">
-              <button className="flex gap-1 items-center px-4 py-2 rounded-[2rem] bg-gradient-to-r from-blue-400 to-blue-600 text-white cursor-pointer text-sm">
-                Log in
-              </button>
-          </Link>
-        }
-        {
-          isAuthenticated && user && (
-            <button onClick={logoutSubmit} className="flex gap-1 items-center px-4 py-2 rounded-[2rem] bg-gradient-to-r from-red-400 to-red-600 text-white cursor-pointer text-sm">
-              Logout
+            <button className="flex gap-1 items-center px-4 py-2 rounded-[2rem] bg-gradient-to-r from-blue-400 to-blue-600 text-white cursor-pointer text-sm">
+              Log in
             </button>
-          )
-        }
+          </Link>
+        )}
+        {isAuthenticated && user && (
+          <button
+            onClick={logoutSubmit}
+            className="flex gap-1 items-center px-4 py-2 rounded-[2rem] bg-gradient-to-r from-red-400 to-red-600 text-white cursor-pointer text-sm"
+          >
+            Logout
+          </button>
+        )}
       </div>
     </div>
   );
