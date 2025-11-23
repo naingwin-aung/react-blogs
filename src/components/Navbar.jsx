@@ -5,9 +5,9 @@ import Image from "./Image";
 import { Link } from "react-router-dom";
 import useAuthStore from "../stores/useAuthStore";
 import { loginWithProvider, logout } from "../auth/authService";
-import { Button, Dialog, Flex, Text, TextField } from "@radix-ui/themes";
-import ProviderLogin from "./Authentication/ProviderLogin";
+import { Dialog } from "@radix-ui/themes";
 import { useGoogleLogin } from "@react-oauth/google";
+import SignInWithGoogle from "./Authentication/SIgnInWIthGoogle";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -132,7 +132,7 @@ const Navbar = () => {
                 </div>
               </Dialog.Title>
               <Dialog.Description size="2" mb="4">
-                <ProviderLogin signInWithGoogle={signInWithGoogle} />
+                <SignInWithGoogle signInWithGoogle={signInWithGoogle} />
               </Dialog.Description>
             </Dialog.Content>
           </Dialog.Root>

@@ -3,7 +3,8 @@ import { login, loginWithProvider } from "../auth/authService.js";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
-import ProviderLogin from "../components/Authentication/ProviderLogin.jsx";
+import { Separator } from "@radix-ui/themes";
+import SignInWithGoogle from "../components/Authentication/SIgnInWIthGoogle.jsx";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center h-[calc(100vh-80px)] bg-gray-100">
       <div className="w-md p-8 rounded-2xl bg-white">
-        <div className="mb-5 text-2xl font-semibold">Log in</div>
+        <div className="mb-5 text-2xl font-semibold">Log in to your account</div>
         <div className="text-sm">
           {loginErrorMessage && (
             <div className="mb-4 text-red-600">{loginErrorMessage}</div>
@@ -100,12 +101,14 @@ const Login = () => {
               </div>
             )}
           </div>
-          <button className="w-full p-3 bg-gradient-to-r from-blue-400 to-blue-600 text-white font-medium rounded-md hover:opacity-90 transition-opacity cursor-pointer">
-            Login
+          <button className="w-full p-3 bg-gradient-to-r from-gray-400 to-gray-600 text-white font-medium rounded-md hover:opacity-90 transition-opacity cursor-pointer">
+            Sign in
           </button>
         </form>
 
-        <ProviderLogin signInWithGoogle={signInWithGoogle} />
+        <Separator className="my-4" size="4" />
+
+        <SignInWithGoogle signInWithGoogle={signInWithGoogle} text="Sign in with Google" />
       </div>
     </div>
   );

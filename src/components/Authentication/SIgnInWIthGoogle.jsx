@@ -1,4 +1,4 @@
-const ProviderLogin = ({ signInWithGoogle }) => {
+const SignInWithGoogle = ({ signInWithGoogle, text }) => {
   return (
     <button
       onClick={signInWithGoogle}
@@ -29,10 +29,10 @@ const ProviderLogin = ({ signInWithGoogle }) => {
         ></path>
       </svg>
       <span className="ms-3 font-medium">
-        Google
+        {text ? text : "Google"}
       </span>
     </button>
   );
 };
 
-export default ProviderLogin;
+export default SignInWithGoogle;
