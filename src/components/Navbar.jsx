@@ -127,12 +127,15 @@ const Navbar = () => {
 
             <Dialog.Content maxWidth="390px">
               <Dialog.Title>
-                <div className="flex justify-between items-center font-medium mb-7">
+                <div className="flex justify-between items-center font-semibold text-2xl mb-7">
                   Login or sign up
                 </div>
               </Dialog.Title>
               <Dialog.Description size="2" mb="4">
-                <SignInWithGoogle signInWithGoogle={signInWithGoogle} />
+                <SignInWithGoogle
+                  signInWithGoogle={signInWithGoogle}
+                  text="Sign in with Google"
+                />
               </Dialog.Description>
             </Dialog.Content>
           </Dialog.Root>
