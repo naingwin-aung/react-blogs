@@ -127,6 +127,16 @@ const Navbar = () => {
 
             <Dialog.Content maxWidth="390px">
               <Dialog.Title>
+                <div className="flex items-center gap-4">
+                  <Image
+                    src="https://i.pinimg.com/736x/1b/aa/51/1baa516470fc278145718dd2048bdf6d.jpg"
+                    alt="Logo"
+                    className="w-10 h-10 mb-5 rounded-full"
+                  />
+                  <div className="font-medium">
+                    Welcome back!
+                  </div>
+                </div>
                 <div className="flex justify-between items-center font-semibold text-2xl mb-7">
                   Login or sign up
                 </div>
