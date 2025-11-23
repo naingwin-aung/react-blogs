@@ -81,7 +81,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop menu */}
-      <div className="hidden md:flex items-center gap-2 lg:gap-4 xl:gap-8 font-medium text-sm">
+      <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 font-medium text-sm">
         <Link to="/">Home</Link>
         <Link to="/">Trending</Link>
         <Link to="/">Most Popular</Link>
