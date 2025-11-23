@@ -4,10 +4,14 @@ import { useState, useEffect } from "react";
 import Image from "./Image";
 import { Link } from "react-router-dom";
 import useAuthStore from "../stores/useAuthStore";
-import { logout } from "../auth/authService";
+import { loginWithProvider, logout } from "../auth/authService";
+import { Button, Dialog, Flex, Text, TextField } from "@radix-ui/themes";
+import ProviderLogin from "./Authentication/ProviderLogin";
+import { useGoogleLogin } from "@react-oauth/google";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   // Disable background scroll when mobile menu is open
   useEffect(() => {
@@ -29,6 +33,24 @@ const Navbar = () => {
     logout();
     setOpen(false);
   };
+
+  const handleGoogleSuccess = async (tokenResponse) => {
+    try {
+      await loginWithProvider("google", tokenResponse.access_token);
+      setIsDialogOpen(false);
+    } catch (error) {
+      console.error("Google login error:", error);
+    }
+  };
+
+  const handleGoogleError = () => {
+    console.log("Google Sign-In failed. Please try again.");
+  };
+
+  const signInWithGoogle = useGoogleLogin({
+    onSuccess: handleGoogleSuccess,
+    onError: handleGoogleError,
+  });
 
   return (
     <div className="w-full h-14 md:h-18 flex items-center justify-between">
@@ -91,11 +113,29 @@ const Navbar = () => {
             Welcome, {user.name}
           </span>
         ) : (
-          <Link to="/login">
-            <button className="flex gap-1 items-center px-4 py-2 rounded-[2rem] bg-gradient-to-r from-blue-400 to-blue-600 text-white cursor-pointer text-sm">
-              Log in
-            </button>
-          </Link>
+          // <Link to="/login">
+          //   <button className="flex gap-1 items-center px-4 py-2 rounded-[2rem] bg-gradient-to-r from-blue-400 to-blue-600 text-white cursor-pointer text-sm">
+          //     Log in
+          //   </button>
+          // </Link>
+          <Dialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <Dialog.Trigger>
+              <button className="flex gap-1 items-center px-4 py-2 rounded-[2rem] bg-gradient-to-r from-blue-400 to-blue-600 text-white cursor-pointer text-sm">
+                Log in
+              </button>
+            </Dialog.Trigger>
+
+            <Dialog.Content maxWidth="390px">
+              <Dialog.Title>
+                <div className="flex justify-between items-center font-medium mb-7">
+                  Login or sign up
+                </div>
+              </Dialog.Title>
+              <Dialog.Description size="2" mb="4">
+                <ProviderLogin signInWithGoogle={signInWithGoogle} />
+              </Dialog.Description>
+            </Dialog.Content>
+          </Dialog.Root>
         )}
         {isAuthenticated && user && (
           <button

@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import "@radix-ui/themes/styles.css";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Home from "./pages/Home.jsx";
@@ -16,6 +17,7 @@ import AppInitializer from "./layouts/AppInitializer.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import GuestRoute from "./components/GuestRoute.jsx";
+import { Theme } from "@radix-ui/themes";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -84,7 +86,9 @@ createRoot(document.getElementById("root")).render(
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
       <QueryClientProvider client={query}>
         <GoogleOAuthProvider clientId={CLIENT_ID}>
-          <RouterProvider router={router} />
+          <Theme>
+            <RouterProvider router={router} />
+          </Theme>
         </GoogleOAuthProvider>
       </QueryClientProvider>
     </ClerkProvider>

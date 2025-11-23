@@ -3,6 +3,7 @@ import { login, loginWithProvider } from "../auth/authService.js";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
+import ProviderLogin from "../components/Authentication/ProviderLogin.jsx";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -104,12 +105,7 @@ const Login = () => {
           </button>
         </form>
 
-        <button 
-          onClick={signInWithGoogle}
-          className="w-full flex items-center justify-center p-3 mb-6 border border-gray-300 rounded-md bg-white text-gray-700 font-medium hover:bg-gray-50 transition-colors mt-4 cursor-pointer"
-        >
-          Sign in with Google
-        </button>
+        <ProviderLogin signInWithGoogle={signInWithGoogle} />
       </div>
     </div>
   );
